@@ -1,73 +1,82 @@
-import React from "react";
-import { motion } from "framer-motion";
-import "../csssection/ContactUs.css";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaBuilding } from 'react-icons/fa';
+import '../csssection/ContactUs.css'; // Make sure to create this CSS file
 
-const ContactUs = () => {
+const Contact = () => {
   return (
-    <section className="contact-section">
-      <motion.div
-        className="contact-container"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        {/* Left Column */}
-        <div className="contact-left">
-          <h2 className="contact-heading">Need Help? We’re Here</h2>
-          <p className="contact-subheading">
-            Fill out the form and our team will get back to you as soon as possible.
-          </p>
+    <div className="contact-page">
+      <div className="contact-header">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Please reach out with any questions or inquiries.</p>
+      </div>
+      <div className="contact-container">
+        {/* Contact Form */}
+        <motion.div 
+          className="contact-form-wrapper"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2>Send us a Message</h2>
           <form className="contact-form">
-            <input type="text" className="contact-input" placeholder="Your Name" required />
-            <input type="email" className="contact-input" placeholder="Your Email" required />
-            <input type="tel" className="contact-input" placeholder="Phone Number" />
-            <input type="text" className="contact-input" placeholder="Company Name" />
-            <input type="text" className="contact-input" placeholder="Designation" />
-            <select className="contact-input">
-              <option value="">Select Inquiry Type</option>
-              <option>General Inquiry</option>
-              <option>Sales</option>
-              <option>Support</option>
-              <option>Careers</option>
-            </select>
-            <motion.button
-              type="submit"
-              className="contact-button"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Submit
-            </motion.button>
+            <div className="form-group">
+              <label htmlFor="name">Full Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+            <button type="submit" className="submit-btn">Submit</button>
           </form>
-        </div>
+        </motion.div>
 
-        {/* Right Column */}
-        <div className="contact-right">
-          <motion.div
-            className="contact-details"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+        {/* Contact Information */}
+        <motion.div 
+          className="contact-info-wrapper"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h2>Contact Information</h2>
+          <div className="contact-info-item">
+            <FaBuilding className="contact-icon" />
             <div>
-              <h4>Sales</h4>
-              <p>sales@arviontechnologies.com</p>
+              <h4>General Inquiries</h4>
+              <p>contact@arvion.com</p>
             </div>
-            <div>
-              <h4>Support</h4>
-              <p>support@arviontechnologies.com</p>
-            </div>
+          </div>
+          <div className="contact-info-item">
+            <FaEnvelope className="contact-icon" />
             <div>
               <h4>Careers</h4>
-              <p>hr@arviontechnologies.com</p>
+              <p>careers@arvion.com</p>
             </div>
-          </motion.div>
-        </div>
-      </motion.div>
-    </section>
+          </div>
+          <div className="contact-info-item">
+            <FaPhone className="contact-icon" />
+            <div>
+              <h4>Phone</h4>
+              {/* ADDED: Your phone number */}
+              <p>+91 9740484570</p>
+            </div>
+          </div>
+          <div className="contact-info-item">
+            <FaMapMarkerAlt className="contact-icon" />
+            <div>
+              <h4>Our Office</h4>
+              <p>123 Business Street, Mumbai, India</p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
   );
 };
 
-export default ContactUs;
+export default Contact;
