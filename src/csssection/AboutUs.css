@@ -1,68 +1,73 @@
+.about-page {
+  padding: 120px 40px 80px; /* Add padding to account for fixed header */
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
 .about-container {
   max-width: 1200px;
-  margin: auto;
-  padding: 60px 20px;
-}
-
-.about-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.about-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #111;
-}
-
-.about-underline {
-  width: 60px;
-  height: 4px;
-  background: #007bff;
-  margin: 10px auto 0;
-  border-radius: 2px;
-}
-
-.about-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   align-items: center;
 }
 
+.about-content {
+  text-align: left;
+}
+
+.about-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0d1b2a;
+  margin-bottom: 10px;
+}
+
+.about-subtitle {
+  font-size: 20px;
+  color: #ff7f32; /* Using your brand accent color */
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.about-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 20px;
+}
+
 .about-image-wrapper {
-  flex: 1 1 400px;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .about-image {
   max-width: 100%;
+  height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
-.about-text {
-  flex: 1 1 500px;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #444;
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-content {
+    text-align: center;
+  }
+  .about-image-wrapper {
+    order: -1; /* Move image to the top on mobile */
+  }
 }
 
-.about-points {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-}
-
-.about-points li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-  gap: 10px;
-}
-
-.about-points img {
-  width: 18px;
-  height: 18px;
+@media (max-width: 768px) {
+  .about-page {
+    padding: 100px 20px 60px;
+  }
+  .about-title {
+    font-size: 32px;
+  }
 }

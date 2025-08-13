@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png'; // Make sure the logo path is correct
-import '../csssection/Header.css'; 
+import '../csssection/Header.css'; // Correct path to your CSS file
 import { FaBars, FaTimes } from 'react-icons/fa'; // Icons for mobile menu
 
 const Header = () => {
@@ -17,7 +17,6 @@ const Header = () => {
         {/* Logo and Brand Name */}
         <Link to="/" className="logo-link">
           <img src={logo} alt="Arvion Technologies Logo" className="logo-image" />
-          {/* ADDED: The brand name text */}
           <span className="brand-name">Arvion Technologies</span>
         </Link>
 
@@ -45,9 +44,10 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <Link to="/contact" className="header-cta" onClick={() => setIsMenuOpen(false)}>
-                Contact Us
-              </Link>
+              {/* MODIFIED: Changed this link to look like the others */}
+              <NavLink to="/contact" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setIsMenuOpen(false)}>
+                Contact
+              </NavLink>
             </li>
           </ul>
         </nav>
