@@ -1,14 +1,16 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+// Import your main components directly
 import Header from './components/Header';
-import ImageCarousel from "./components/HorizontalScroll";
+import HorizontalScroll from "./components/HorizontalScroll"; // Renamed for clarity
 import FeaturesSection from './components/FeaturesSection';
 import Footer from './components/Footer';
 
-import AboutPage from './pages/AboutUs';
-import PlansPage from './pages/Services';
-import ContactPage from './pages/ContactUs';
+// Import the page components we created
+import About from './pages/AboutUs'; // The About Us page component
+import ServicesAndPricing from './pages/Services'; // The Services page component
+import Contact from './pages/ContactUs'; // Assuming you have a Contact.jsx
 
 import './App.css';
 
@@ -23,14 +25,15 @@ function App() {
             path="/"
             element={
               <>
-                <ImageCarousel />
+                <HorizontalScroll />
                 <FeaturesSection />
               </>
             }
           />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/plans" element={<PlansPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          {/* CORRECTED PATHS */}
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<ServicesAndPricing />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 

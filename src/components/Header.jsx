@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png'; // Make sure the logo path is correct
-import '../csssection/Header.css'; // Correct path to your CSS file
+import '../csssection/Header.css'; // Using the correct path to your CSS file
 import { FaBars, FaTimes } from 'react-icons/fa'; // Icons for mobile menu
 
 const Header = () => {
@@ -44,7 +44,6 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              {/* MODIFIED: Changed this link to look like the others */}
               <NavLink to="/contact" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setIsMenuOpen(false)}>
                 Contact
               </NavLink>
