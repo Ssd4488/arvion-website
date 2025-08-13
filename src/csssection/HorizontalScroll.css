@@ -1,0 +1,105 @@
+/* Outer full container with header */
+.carousel-full-container {
+  width: 100vw;
+  height: 80vh;
+  background: linear-gradient(to right, #fcd34d, #fb923c);
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Carousel area */
+.carousel-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Slides wrapper */
+.carousel-wrapper {
+  display: flex;
+  height: 100%;
+  transition: transform 1s ease-in-out;
+}
+
+/* Each slide */
+.slide {
+  flex: 0 0 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Image section */
+.slide-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-image img {
+  width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+/* Text section */
+.slide-content {
+  flex: 1;
+  padding: 2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+/* Indicators */
+.indicators {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+  background-color: #2563eb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .slide {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .slide-image,
+  .slide-content {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .slide-content {
+    font-size: 1.2rem;
+  }
+
+  .carousel-header {
+    font-size: 1.5rem;
+  }
+}

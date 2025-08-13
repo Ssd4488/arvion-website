@@ -1,0 +1,106 @@
+.services-section {
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #f5f7fa, #e4e9f2);
+  text-align: center;
+  scroll-margin-top: 80px; /* smooth scroll offset for header */
+}
+
+.services-heading {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: #222;
+  position: relative;
+}
+
+.services-heading::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff7f50, #ff4e90);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.get-started-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #ff7f50, #ff4e90);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background: linear-gradient(90deg, #ff4e90, #ff7f50);
+  box-shadow: 0 4px 15px rgba(255, 78, 144, 0.4);
+}
+
+/* Make sure buttons look same in pricing section */
+.pricing-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #ff7f50, #ff4e90);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pricing-btn:hover {
+  background: linear-gradient(90deg, #ff4e90, #ff7f50);
+  box-shadow: 0 4px 15px rgba(255, 78, 144, 0.4);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .services-heading {
+    font-size: 28px;
+  }
+
+  .service-card {
+    padding: 25px 20px;
+  }
+
+  .get-started-btn,
+  .pricing-btn {
+    width: 100%;
+  }
+}

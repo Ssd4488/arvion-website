@@ -1,0 +1,106 @@
+.features-section {
+  background: linear-gradient(to bottom, #dff1ff, #cce5ff, #f7b267);
+  padding: 60px 20px;
+}
+
+
+
+.features-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.feature-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-text {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.feature-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.feature-text p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.feature-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.feature-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.feature-box.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feature-box {
+    flex-direction: column;
+    text-align: center;
+  }
+  .feature-box.reverse {
+    flex-direction: column;
+  }
+}
+/* Existing styles remain unchanged */
+
+/* Points container */
+.feature-points {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Individual point box */
+.point-box {
+  background: #f0f7ff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #333;
+  border: 1px solid #cce5ff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.point-box:hover {
+  background: #e1f0ff;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustment for points */
+@media (max-width: 768px) {
+  .feature-points {
+    justify-content: center;
+  }
+}
+

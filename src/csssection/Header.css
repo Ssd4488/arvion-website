@@ -1,0 +1,157 @@
+/* Main container */
+.csssection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* Left side: logo + name */
+.csssection-left {
+  display: flex;
+  align-items: center;
+}
+
+.csssection-logo {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+
+.csssection-logo:hover {
+  transform: rotate(4deg) scale(1.06);
+}
+
+.csssection-brand-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d1b2a;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.csssection-brand-name:hover {
+  color: #ff7f32; /* Brand Accent */
+  transform: translateY(-1px);
+}
+
+/* Navigation links */
+.csssection-nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #444;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff7f32; /* Brand Accent */
+  transform: translateY(-2px);
+}
+
+/* Hover underline animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #ff7f32; /* Brand Accent */
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active nav link styling */
+.nav-link.active {
+  color: #ff7f32; /* Brand Accent */
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Focus outline for keyboard accessibility */
+.nav-link:focus-visible {
+  outline: 2px solid #ff7f32;
+  outline-offset: 2px;
+}
+
+/* CTA Button in header */
+.header-cta {
+  background: #ff7f32;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.header-cta:hover {
+  background: #e96e25;
+  transform: translateY(-2px);
+}
+
+/* Mobile menu toggle */
+.csssection-toggle {
+  display: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.csssection-toggle:hover {
+  transform: scale(1.1);
+}
+
+.csssection-toggle:focus-visible {
+  outline: 2px solid #ff7f32;
+  outline-offset: 2px;
+}
+
+/* Responsive mobile nav */
+@media (max-width: 768px) {
+  .csssection-nav {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.35s ease;
+  }
+
+  .csssection-nav.open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .csssection-toggle {
+    display: block;
+  }
+}
