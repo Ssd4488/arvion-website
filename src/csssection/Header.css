@@ -1,34 +1,51 @@
 /* Main container */
-.csssection-header {
+.main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 32px;
   background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  position: relative;
-  z-index: 100;
+  position: fixed; /* Changed from relative to keep it at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Increased z-index to stay on top */
   transition: all 0.3s ease;
+  box-sizing: border-box; /* Added for consistent padding behavior */
 }
+
+/* This container helps in centering the content */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px; /* Or your preferred max width */
+  margin: 0 auto;
+}
+
 
 /* Left side: logo + name */
-.csssection-left {
+.logo-link { /* Re-using your existing class for the link */
   display: flex;
   align-items: center;
+  text-decoration: none; /* Remove underline from link */
 }
 
-.csssection-logo {
+.logo-image { /* Re-using your existing class for the logo */
   width: 48px;
   height: 48px;
   margin-right: 12px;
   transition: transform 0.3s ease;
 }
 
-.csssection-logo:hover {
+.logo-image:hover {
   transform: rotate(4deg) scale(1.06);
 }
 
-.csssection-brand-name {
+/* This is a new class if you want to add a text brand name next to the logo */
+.brand-name {
   font-size: 28px;
   font-weight: 700;
   color: #0d1b2a;
@@ -37,16 +54,25 @@
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.csssection-brand-name:hover {
+.brand-name:hover {
   color: #ff7f32; /* Brand Accent */
   transform: translateY(-1px);
 }
 
 /* Navigation links */
-.csssection-nav {
+.main-nav { /* Re-using your existing nav container class */
   display: flex;
   gap: 28px;
   align-items: center;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
@@ -104,6 +130,7 @@
   border-radius: 6px;
   font-weight: 600;
   transition: background 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* Remove underline from link if it's an <a> tag */
 }
 
 .header-cta:hover {
@@ -112,26 +139,27 @@
 }
 
 /* Mobile menu toggle */
-.csssection-toggle {
+.menu-toggle { /* Renamed for clarity */
   display: none;
   cursor: pointer;
   transition: transform 0.3s ease;
+  /* Add styles for your hamburger icon here */
 }
 
-.csssection-toggle:hover {
+.menu-toggle:hover {
   transform: scale(1.1);
 }
 
-.csssection-toggle:focus-visible {
+.menu-toggle:focus-visible {
   outline: 2px solid #ff7f32;
   outline-offset: 2px;
 }
 
 /* Responsive mobile nav */
 @media (max-width: 768px) {
-  .csssection-nav {
+  .main-nav {
     position: absolute;
-    top: 72px;
+    top: 72px; /* Adjust based on your header height */
     left: 0;
     width: 100%;
     background: white;
@@ -145,13 +173,17 @@
     transition: all 0.35s ease;
   }
 
-  .csssection-nav.open {
+  .main-nav.open {
     display: flex;
     opacity: 1;
     transform: translateY(0);
   }
+  
+  .main-nav ul {
+    flex-direction: column;
+  }
 
-  .csssection-toggle {
+  .menu-toggle {
     display: block;
   }
 }

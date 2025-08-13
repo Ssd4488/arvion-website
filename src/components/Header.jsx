@@ -1,85 +1,58 @@
 import React, { useState } from 'react';
-import '../csssection/Header.css';
-import { Menu, X } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link, NavLink } from 'react-router-dom';
+import logo from '../assets/logo.png'; // Make sure the logo path is correct
+import '../csssection/Header.css'; 
+import { FaBars, FaTimes } from 'react-icons/fa'; // Icons for mobile menu
 
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Close mobile menu when a link is clicked
-  const handleLinkClick = () => {
-    setMobileMenuOpen(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <motion.header
-      className="csssection-header"
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
-      {/* Left side: Logo + Brand Name */}
-      <div className="csssection-left">
-        <img
-          src="/logo192.png"
-          alt="Arvion Technologies Logo"
-          className="csssection-logo"
-        />
-        <h1 className="csssection-brand-name">ARVION TECHNOLOGIES</h1>
+    <header className="main-header">
+      <div className="header-container">
+        {/* Logo and Brand Name */}
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="Arvion Technologies Logo" className="logo-image" />
+          {/* ADDED: The brand name text */}
+          <span className="brand-name">Arvion Technologies</span>
+        </Link>
+
+        {/* Mobile Menu Toggle */}
+        <div className="menu-toggle" onClick={toggleMenu}>
+          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </div>
+
+        {/* Navigation */}
+        <nav className={`main-nav ${isMenuOpen ? 'open' : ''}`}>
+          <ul>
+            <li>
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setIsMenuOpen(false)}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setIsMenuOpen(false)}>
+                About Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/services" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setIsMenuOpen(false)}>
+                Services
+              </NavLink>
+            </li>
+            <li>
+              <Link to="/contact" className="header-cta" onClick={() => setIsMenuOpen(false)}>
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-
-      {/* Navigation */}
-      <nav className={`csssection-nav ${mobileMenuOpen ? 'open' : ''}`}>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? 'nav-link active' : 'nav-link'
-          }
-          onClick={handleLinkClick}
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive ? 'nav-link active' : 'nav-link'
-          }
-          onClick={handleLinkClick}
-        >
-          About Us
-        </NavLink>
-        <NavLink
-          to="/plans"
-          className={({ isActive }) =>
-            isActive ? 'nav-link active' : 'nav-link'
-          }
-          onClick={handleLinkClick}
-        >
-          Services
-        </NavLink>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            isActive ? 'nav-link active' : 'nav-link'
-          }
-          onClick={handleLinkClick}
-        >
-          Contact Us
-        </NavLink>
-      </nav>
-
-      {/* Mobile menu toggle */}
-      <button
-        className="csssection-toggle"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={mobileMenuOpen}
-        type="button"
-      >
-        {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-      </button>
-    </motion.header>
+    </header>
   );
 };
 

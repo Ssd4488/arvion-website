@@ -22,6 +22,42 @@
   border-radius: 2px;
 }
 
+/* --- STYLES FOR PRICING TABS --- */
+.pricing-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.pricing-tabs button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #ff7f50;
+  background-color: transparent;
+  color: #ff7f50;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.pricing-tabs button:hover {
+  background-color: #ff7f50;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.pricing-tabs button.active {
+  background: linear-gradient(90deg, #ff7f50, #ff4e90);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(255, 78, 144, 0.3);
+}
+/* --- END OF TAB STYLES --- */
+
 .pricing-grid {
   display: grid;
   gap: 30px;
@@ -47,21 +83,21 @@
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
 
-.pricing-title {
+.pricing-card h3 {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 15px;
   color: #ff4e90;
 }
 
-.pricing-price {
+.pricing-card .price {
   font-size: 32px;
   font-weight: bold;
   color: #222;
   margin-bottom: 20px;
 }
 
-.pricing-features {
+.pricing-card ul {
   list-style: none;
   padding: 0;
   margin-bottom: 25px;
@@ -69,7 +105,7 @@
   width: 100%;
 }
 
-.pricing-features li {
+.pricing-card ul li {
   font-size: 15px;
   padding: 8px 0;
   border-bottom: 1px solid #eee;
@@ -94,13 +130,11 @@
   box-shadow: 0 4px 15px rgba(255, 78, 144, 0.4);
 }
 
-/* Highlighted/featured pricing card */
 .pricing-card.featured {
   border: 2px solid #ff4e90;
   transform: scale(1.03);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .pricing-heading {
     font-size: 28px;

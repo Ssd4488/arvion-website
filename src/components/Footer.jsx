@@ -2,19 +2,11 @@ import React from "react";
 import "../csssection/Footer.css";
 import { FaLinkedin, FaFacebookF, FaInstagram } from "react-icons/fa";
 import logo from "../assets/logo.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom"; // Removed useLocation as it's no longer needed here
 import { motion } from "framer-motion";
 
 const Footer = () => {
-  const location = useLocation();
-
-  const scrollToHome = () => {
-    if (location.pathname === "/") {
-      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/";
-    }
-  };
+  // The scrollToHome function is no longer needed with the standard Link component
 
   return (
     <motion.footer
@@ -24,7 +16,6 @@ const Footer = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="footer-container">
-
         {/* Logo + About */}
         <div className="footer-column">
           <img src={logo} alt="Arvion Logo" className="footer-logo" />
@@ -39,9 +30,10 @@ const Footer = () => {
           <h4>Quick Links</h4>
           <ul>
             <li>
-              <button onClick={scrollToHome} className="footer-link-btn">
+              {/* MODIFIED: Changed the button to a standard Link for simplicity */}
+              <Link to="/" className="footer-link">
                 Home
-              </button>
+              </Link>
             </li>
             <li>
               <Link to="/about" className="footer-link">
@@ -49,7 +41,8 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/pricing" className="footer-link">
+              {/* NOTE: This links to /pricing. Your services page is at /services */}
+              <Link to="/services" className="footer-link">
                 Plans
               </Link>
             </li>
@@ -66,17 +59,20 @@ const Footer = () => {
           <h4>Services</h4>
           <ul>
             <li>
-              <Link to="/services" className="footer-link">
-                ERP Solutions
+              {/* MODIFIED: Text updated and state kept for linking */}
+              <Link to="/services" state={{ tab: 'school' }} className="footer-link">
+                School Management
               </Link>
             </li>
             <li>
-              <Link to="/services" className="footer-link">
-                Payroll Management
+              {/* MODIFIED: Text updated and state kept for linking */}
+              <Link to="/services" state={{ tab: 'payroll' }} className="footer-link">
+                Payroll Application
               </Link>
             </li>
             <li>
-              <Link to="/services" className="footer-link">
+              {/* MODIFIED: Text updated and state kept for linking */}
+              <Link to="/services" state={{ tab: 'outsourcing' }} className="footer-link">
                 Outsourcing
               </Link>
             </li>
@@ -95,7 +91,6 @@ const Footer = () => {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link"><FaInstagram /></a>
           </div>
         </div>
-
       </div>
 
       {/* Copyright */}

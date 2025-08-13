@@ -53,15 +53,15 @@ const ContactUs = () => {
           >
             <div>
               <h4>Sales</h4>
-              <p>sales@yourcompany.com</p>
+              <p>sales@arviontechnologies.com</p>
             </div>
             <div>
               <h4>Support</h4>
-              <p>support@yourcompany.com</p>
+              <p>support@arviontechnologies.com</p>
             </div>
             <div>
               <h4>Careers</h4>
-              <p>hr@yourcompany.com</p>
+              <p>hr@arviontechnologies.com</p>
             </div>
           </motion.div>
         </div>
