@@ -1,122 +1,131 @@
 import React, { useState, useEffect, useRef } from 'react';
-import VanillaTilt from 'vanilla-tilt';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaCalendarAlt, FaCheckCircle, FaChartBar, FaShieldAlt, FaCalculator, FaFileContract, FaGlobe, FaPuzzlePiece, FaClock, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../csssection/HorizontalScroll.css';
 
-import schoolImg from '../assets/school-management1.png';
-import payrollImg from '../assets/payroll-app1.png';
-import outsourcingImg from '../assets/outsourcing1.png';
+import schoolImg from '../assets/service-school.png';
+import payrollImg from '../assets/service-payroll.png';
+import outsourcingImg from '../assets/service-outsourcing.png';
 
 const services = [
   {
     title: 'School Management',
-    description: 'Comprehensive solutions to manage all aspects of your educational institution effortlessly.',
+    description: 'A unified platform to streamline all your school’s administrative and academic activities.',
     image: schoolImg,
+    stats: [
+      { icon: <FaCalendarAlt />, text: 'Effortless Scheduling' },
+      { icon: <FaCheckCircle />, text: 'Automated Attendance' },
+      { icon: <FaChartBar />, text: 'Real-time Reporting' },
+    ],
   },
   {
     title: 'Payroll Application',
-    description: 'Automate your payroll with our secure, accurate, and data-driven application.',
+    description: 'Ensure accurate, timely, and compliant payroll processing for your entire organization.',
     image: payrollImg,
+    stats: [
+      { icon: <FaShieldAlt />, text: 'Secure Transactions' },
+      { icon: <FaCalculator />, text: 'Accurate Calculations' },
+      { icon: <FaFileContract />, text: 'Compliance Ready' },
+    ],
   },
   {
     title: 'Outsourcing',
-    description: 'Connect with a global network of professionals to scale your business operations.',
+    description: 'Access a global talent pool to scale your operations and drive productivity.',
     image: outsourcingImg,
+    stats: [
+      { icon: <FaGlobe />, text: 'Global Talent Pool' },
+      { icon: <FaPuzzlePiece />, text: 'Seamless Integration' },
+      { icon: <FaClock />, text: '24/7 Productivity' },
+    ],
   },
 ];
 
-const Tilt = (props) => {
-  const { options, ...rest } = props;
-  const tilt = useRef(null);
-
-  useEffect(() => {
-    VanillaTilt.init(tilt.current, options);
-  }, [options]);
-
-  return <div ref={tilt} {...rest} />;
-}
-
 const HorizontalScroll = () => {
-  const tiltOptions = {
-    max: 15,
-    speed: 400,
-    glare: true,
-    'max-glare': 0.4,
-    scale: 1.05,
-  };
-
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
-  const containerRef = useRef(null);
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const autoScrollInterval = useRef(null);
 
+  // Create an extended list for the infinite loop: [last, 1, 2, 3, first]
+  const extendedServices = [services[services.length - 1], ...services, services[0]];
+
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
+    if (!isTransitioning) return;
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + services.length) % services.length);
+    if (!isTransitioning) return;
+    setCurrentIndex((prevIndex) => prevIndex - 1);
   };
 
   // Effect for auto-scrolling
   useEffect(() => {
     if (!isHovering) {
-      autoScrollInterval.current = setInterval(handleNext, 4000); // Change slide every 4 seconds
+      autoScrollInterval.current = setInterval(handleNext, 4000);
     }
     return () => clearInterval(autoScrollInterval.current);
-  }, [isHovering]);
+  }, [isHovering, isTransitioning]);
 
-  // Effect for keyboard navigation
+  // Effect to handle the "jump" for the infinite loop
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowRight') {
-        handleNext();
-        clearInterval(autoScrollInterval.current); // Reset timer on manual navigation
-      } else if (e.key === 'ArrowLeft') {
-        handlePrev();
-        clearInterval(autoScrollInterval.current); // Reset timer on manual navigation
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Effect to scroll the container to the active card
-  useEffect(() => {
-    if (containerRef.current) {
-      const scrollLeft = containerRef.current.children[currentIndex].offsetLeft;
-      containerRef.current.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    if (currentIndex === 0 || currentIndex === extendedServices.length - 1) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(currentIndex === 0 ? services.length : 1);
+      }, 500); // This must match the CSS transition duration
+      return () => clearTimeout(timer);
     }
-  }, [currentIndex]);
+  }, [currentIndex, services.length, extendedServices.length]);
+
+  // Effect to re-enable the transition after the "jump"
+  useEffect(() => {
+    if (!isTransitioning) {
+      setTimeout(() => {
+        setIsTransitioning(true);
+      }, 50);
+    }
+  }, [isTransitioning]);
 
   return (
-    <section className="interactive-services">
-      <h2 className="section-title"></h2>
+    <section className="interactive-services-v2">
       <div 
-        className="carousel-wrapper"
+        className="carousel-wrapper-v2"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <div className="cards-container" ref={containerRef}>
-          {services.map((service, index) => (
-            <div className="card-wrapper" key={index}>
-              <Tilt className="card" options={tiltOptions}>
-                <img src={service.image} alt={service.title} className="card-background" />
-                <div className="card-overlay">
-                  <div className="card-content">
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
+        <div 
+          className="cards-container-v2" 
+          style={{ 
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none'
+          }}
+        >
+          {extendedServices.map((service, index) => (
+            <div className="card-wrapper-v2" key={index}>
+              <div className="service-card-v2">
+                <div className="card-background-v2" style={{ backgroundImage: `url(${service.image})` }} />
+                <div className="card-overlay-v2">
+                  <div className="card-content-v2">
+                    <h3 className="card-title-v2">{service.title}</h3>
+                    <p className="card-description-v2">{service.description}</p>
+                    <div className="stats-container-v2">
+                      {service.stats.map((stat, statIndex) => (
+                        <div className="stat-item-v2" key={statIndex}>
+                          <span className="stat-icon-v2">{stat.icon}</span>
+                          <span className="stat-text-v2">{stat.text}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </Tilt>
+              </div>
             </div>
           ))}
         </div>
-        <button className="nav-arrow prev" onClick={handlePrev} aria-label="Previous Slide">
+        <button className="nav-arrow-v2 prev-v2" onClick={handlePrev} aria-label="Previous Slide">
           <FaChevronLeft />
         </button>
-        <button className="nav-arrow next" onClick={handleNext} aria-label="Next Slide">
+        <button className="nav-arrow-v2 next-v2" onClick={handleNext} aria-label="Next Slide">
           <FaChevronRight />
         </button>
       </div>
@@ -125,4 +134,3 @@ const HorizontalScroll = () => {
 };
 
 export default HorizontalScroll;
-
