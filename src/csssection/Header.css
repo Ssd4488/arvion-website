@@ -6,34 +6,31 @@
   padding: 16px 32px;
   background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  position: fixed; /* Changed from relative to keep it at the top */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Increased z-index to stay on top */
+  z-index: 1000;
   transition: all 0.3s ease;
-  box-sizing: border-box; /* Added for consistent padding behavior */
+  box-sizing: border-box;
 }
 
-/* This container helps in centering the content */
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1400px; /* Or your preferred max width */
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-
-/* Left side: logo + name */
-.logo-link { /* Re-using your existing class for the link */
+.logo-link {
   display: flex;
   align-items: center;
-  text-decoration: none; /* Remove underline from link */
+  text-decoration: none;
 }
 
-.logo-image { /* Re-using your existing class for the logo */
+.logo-image {
   width: 48px;
   height: 48px;
   margin-right: 12px;
@@ -44,7 +41,6 @@
   transform: rotate(4deg) scale(1.06);
 }
 
-/* This is a new class if you want to add a text brand name next to the logo */
 .brand-name {
   font-size: 28px;
   font-weight: 700;
@@ -55,12 +51,12 @@
 }
 
 .brand-name:hover {
-  color: #ff7f32; /* Brand Accent */
+  color: #ff7f32;
   transform: translateY(-1px);
 }
 
 /* Navigation links */
-.main-nav { /* Re-using your existing nav container class */
+.main-nav {
   display: flex;
   gap: 28px;
   align-items: center;
@@ -83,14 +79,16 @@
   cursor: pointer;
   position: relative;
   transition: color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .nav-link:hover {
-  color: #ff7f32; /* Brand Accent */
+  color: #ff7f32;
   transform: translateY(-2px);
 }
 
-/* Hover underline animation */
 .nav-link::after {
   content: "";
   position: absolute;
@@ -98,7 +96,7 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background: #ff7f32; /* Brand Accent */
+  background: #ff7f32;
   transition: width 0.3s ease;
 }
 
@@ -106,9 +104,8 @@
   width: 100%;
 }
 
-/* Active nav link styling */
 .nav-link.active {
-  color: #ff7f32; /* Brand Accent */
+  color: #ff7f32;
   font-weight: 700;
 }
 
@@ -116,34 +113,75 @@
   width: 100%;
 }
 
-/* Focus outline for keyboard accessibility */
 .nav-link:focus-visible {
   outline: 2px solid #ff7f32;
   outline-offset: 2px;
 }
 
-/* CTA Button in header */
-.header-cta {
-  background: #ff7f32;
-  color: white;
-  padding: 8px 18px;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.3s ease;
-  text-decoration: none; /* Remove underline from link if it's an <a> tag */
+/* Dropdown Styling */
+.nav-item-dropdown {
+  position: relative;
+  /* MODIFIED: Added padding to create a larger hover area */
+  padding-bottom: 15px;
+  margin-bottom: -15px; /* Negative margin to prevent layout shift */
 }
 
-.header-cta:hover {
-  background: #e96e25;
-  transform: translateY(-2px);
+.dropdown-arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.nav-item-dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  /* MODIFIED: Removed margin-top and added padding-top */
+  margin-top: 0;
+  padding-top: 15px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* MODIFIED: Hide dropdown by default */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* MODIFIED: Show dropdown on hover of the parent item */
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-link {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background-color: #f8f9fa;
+  color: #ff7f32;
 }
 
 /* Mobile menu toggle */
-.menu-toggle { /* Renamed for clarity */
+.menu-toggle {
   display: none;
   cursor: pointer;
   transition: transform 0.3s ease;
-  /* Add styles for your hamburger icon here */
 }
 
 .menu-toggle:hover {
@@ -159,7 +197,7 @@
 @media (max-width: 768px) {
   .main-nav {
     position: absolute;
-    top: 72px; /* Adjust based on your header height */
+    top: 72px;
     left: 0;
     width: 100%;
     background: white;
@@ -185,5 +223,10 @@
 
   .menu-toggle {
     display: block;
+  }
+
+  /* Hide dropdown on mobile, rely on main services link */
+  .dropdown-menu {
+    display: none;
   }
 }

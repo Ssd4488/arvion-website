@@ -1,103 +1,68 @@
-import React from "react";
-import "../csssection/Footer.css";
-import { FaLinkedin, FaFacebookF, FaInstagram } from "react-icons/fa";
-import logo from "../assets/logo.png";
-import { Link } from "react-router-dom"; // Removed useLocation as it's no longer needed here
-import { motion } from "framer-motion";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import logo from '../assets/logo.png';
+import '../csssection/Footer.css'; // This will use the new CSS file
 
 const Footer = () => {
-  // The scrollToHome function is no longer needed with the standard Link component
+  const services = [
+    { name: 'School Management', path: '/services/school-management' },
+    { name: 'Outsourcing', path: '/services/outsourcing' },
+    { name: 'Statutory Registrations', path: '/services/registrations' },
+    { name: 'Accounting', path: '/services/accounting' },
+    { name: 'Payroll', path: '/services/payroll' },
+  ];
 
   return (
-    <motion.footer
-      className="footer"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
+    <footer className="footer">
       <div className="footer-container">
-        {/* Logo + About */}
+        {/* Column 1: Logo + About */}
         <div className="footer-column">
           <img src={logo} alt="Arvion Logo" className="footer-logo" />
           <p className="footer-about">
-            Arvion Technologies provides innovative ERP, Payroll, and Outsourcing
-            solutions to streamline your business processes with efficiency and ease.
+            Providing innovative solutions to streamline your business operations
+            with cutting-edge technology and expert support.
           </p>
         </div>
 
-        {/* Quick Links */}
+        {/* Column 2: Quick Links */}
         <div className="footer-column">
           <h4>Quick Links</h4>
           <ul>
-            <li>
-              {/* MODIFIED: Changed the button to a standard Link for simplicity */}
-              <Link to="/" className="footer-link">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="footer-link">
-                About Us
-              </Link>
-            </li>
-            <li>
-              {/* NOTE: This links to /pricing. Your services page is at /services */}
-              <Link to="/services" className="footer-link">
-                Plans
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="footer-link">
-                Contact Us
-              </Link>
-            </li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/services">Services</Link></li>
+            <li><Link to="/contact">Contact Us</Link></li>
           </ul>
         </div>
 
-        {/* Services */}
+        {/* Column 3: Services */}
         <div className="footer-column">
-          <h4>Services</h4>
+          <h4>Our Services</h4>
           <ul>
-            <li>
-              {/* MODIFIED: Text updated and state kept for linking */}
-              <Link to="/services" state={{ tab: 'school' }} className="footer-link">
-                School Management
-              </Link>
-            </li>
-            <li>
-              {/* MODIFIED: Text updated and state kept for linking */}
-              <Link to="/services" state={{ tab: 'payroll' }} className="footer-link">
-                Payroll Application
-              </Link>
-            </li>
-            <li>
-              {/* MODIFIED: Text updated and state kept for linking */}
-              <Link to="/services" state={{ tab: 'outsourcing' }} className="footer-link">
-                Outsourcing
-              </Link>
-            </li>
+            {services.map((service) => (
+              <li key={service.name}>
+                <Link to={service.path}>{service.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* Contact */}
+        {/* Column 4: Social */}
         <div className="footer-column">
-          <h4>Contact Us</h4>
-          <p>123 Business Street, Mumbai, India</p>
-          <p>Email: contact@arvion.com</p>
-          <p>Phone: +91 98765 43210</p>
+          <h4>Follow Us</h4>
           <div className="social-icons">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link"><FaLinkedin /></a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link"><FaFacebookF /></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link"><FaInstagram /></a>
+            <a href="#" aria-label="Facebook"><FaFacebook /></a>
+            <a href="#" aria-label="Twitter"><FaTwitter /></a>
+            <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href="#" aria-label="Instagram"><FaInstagram /></a>
           </div>
         </div>
       </div>
-
-      {/* Copyright */}
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Arvion Technologies. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Arvion Technologies. All Rights Reserved.</p>
       </div>
-    </motion.footer>
+    </footer>
   );
 };
 

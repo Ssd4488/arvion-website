@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaCalendarAlt, FaCheckCircle, FaChartBar, FaShieldAlt, FaCalculator, FaFileContract, FaGlobe, FaPuzzlePiece, FaClock, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaCalendarAlt, FaCheckCircle, FaChartBar, FaGlobe, FaPuzzlePiece, FaClock, FaStamp, FaFileSignature, FaBuilding, FaCalculator, FaChartLine, FaBook, FaShieldAlt, FaFileContract, FaChevronLeft, FaChevronRight, FaInfoCircle } from 'react-icons/fa';
 import '../csssection/HorizontalScroll.css';
 
+// Import all five service images
 import schoolImg from '../assets/service-school.png';
-import payrollImg from '../assets/service-payroll.png';
 import outsourcingImg from '../assets/service-outsourcing.png';
+import registrationsImg from '../assets/service-registrations.png';
+import accountingImg from '../assets/service-accounting.png';
+import payrollImg from '../assets/service-payroll.png';
 
 const services = [
   {
     title: 'School Management',
     description: 'A unified platform to streamline all your school’s administrative and academic activities.',
     image: schoolImg,
+    path: '/services/school-management',
     stats: [
       { icon: <FaCalendarAlt />, text: 'Effortless Scheduling' },
       { icon: <FaCheckCircle />, text: 'Automated Attendance' },
@@ -18,23 +23,47 @@ const services = [
     ],
   },
   {
-    title: 'Payroll Application',
-    description: 'Ensure accurate, timely, and compliant payroll processing for your entire organization.',
-    image: payrollImg,
-    stats: [
-      { icon: <FaShieldAlt />, text: 'Secure Transactions' },
-      { icon: <FaCalculator />, text: 'Accurate Calculations' },
-      { icon: <FaFileContract />, text: 'Compliance Ready' },
-    ],
-  },
-  {
     title: 'Outsourcing',
     description: 'Access a global talent pool to scale your operations and drive productivity.',
     image: outsourcingImg,
+    path: '/services/outsourcing',
     stats: [
       { icon: <FaGlobe />, text: 'Global Talent Pool' },
       { icon: <FaPuzzlePiece />, text: 'Seamless Integration' },
       { icon: <FaClock />, text: '24/7 Productivity' },
+    ],
+  },
+  {
+    title: 'Statutory Registrations',
+    description: 'Navigate complex legal requirements and ensure your business is fully compliant.',
+    image: registrationsImg,
+    path: '/services/registrations',
+    stats: [
+      { icon: <FaStamp />, text: 'Business Name Approval' },
+      { icon: <FaFileSignature />, text: 'GST & Tax ID Application' },
+      { icon: <FaBuilding />, text: 'Company Incorporation' },
+    ],
+  },
+  {
+    title: 'Accounting',
+    description: 'Maintain accurate financial records and gain insights with our expert accounting services.',
+    image: accountingImg,
+    path: '/services/accounting',
+    stats: [
+      { icon: <FaBook />, text: 'Bookkeeping Services' },
+      { icon: <FaChartLine />, text: 'Financial Reporting' },
+      { icon: <FaCalculator />, text: 'Expense Tracking' },
+    ],
+  },
+  {
+    title: 'Payroll',
+    description: 'Ensure accurate, timely, and compliant payroll processing for your entire organization.',
+    image: payrollImg,
+    path: '/services/payroll',
+    stats: [
+      { icon: <FaShieldAlt />, text: 'Secure Transactions' },
+      { icon: <FaCalculator />, text: 'Accurate Calculations' },
+      { icon: <FaFileContract />, text: 'Compliance Ready' },
     ],
   },
 ];
@@ -45,7 +74,6 @@ const HorizontalScroll = () => {
   const [isTransitioning, setIsTransitioning] = useState(true);
   const autoScrollInterval = useRef(null);
 
-  // Create an extended list for the infinite loop: [last, 1, 2, 3, first]
   const extendedServices = [services[services.length - 1], ...services, services[0]];
 
   const handleNext = () => {
@@ -58,7 +86,6 @@ const HorizontalScroll = () => {
     setCurrentIndex((prevIndex) => prevIndex - 1);
   };
 
-  // Effect for auto-scrolling
   useEffect(() => {
     if (!isHovering) {
       autoScrollInterval.current = setInterval(handleNext, 4000);
@@ -66,18 +93,16 @@ const HorizontalScroll = () => {
     return () => clearInterval(autoScrollInterval.current);
   }, [isHovering, isTransitioning]);
 
-  // Effect to handle the "jump" for the infinite loop
   useEffect(() => {
     if (currentIndex === 0 || currentIndex === extendedServices.length - 1) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
         setCurrentIndex(currentIndex === 0 ? services.length : 1);
-      }, 500); // This must match the CSS transition duration
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [currentIndex, services.length, extendedServices.length]);
 
-  // Effect to re-enable the transition after the "jump"
   useEffect(() => {
     if (!isTransitioning) {
       setTimeout(() => {
@@ -88,6 +113,10 @@ const HorizontalScroll = () => {
 
   return (
     <section className="interactive-services-v2">
+      <div className="section-header">
+        <h2 className="section-title-v2">Our Core Services</h2>
+        <p className="section-subtitle-v2">Explore our suite of solutions designed to help your business thrive.</p>
+      </div>
       <div 
         className="carousel-wrapper-v2"
         onMouseEnter={() => setIsHovering(true)}
@@ -102,23 +131,30 @@ const HorizontalScroll = () => {
         >
           {extendedServices.map((service, index) => (
             <div className="card-wrapper-v2" key={index}>
-              <div className="service-card-v2">
-                <div className="card-background-v2" style={{ backgroundImage: `url(${service.image})` }} />
-                <div className="card-overlay-v2">
-                  <div className="card-content-v2">
-                    <h3 className="card-title-v2">{service.title}</h3>
-                    <p className="card-description-v2">{service.description}</p>
-                    <div className="stats-container-v2">
-                      {service.stats.map((stat, statIndex) => (
-                        <div className="stat-item-v2" key={statIndex}>
-                          <span className="stat-icon-v2">{stat.icon}</span>
-                          <span className="stat-text-v2">{stat.text}</span>
-                        </div>
-                      ))}
+              <Link to={service.path} className="service-card-link">
+                <div className="service-card-v2">
+                  <div className="card-background-v2" style={{ backgroundImage: `url(${service.image})` }} />
+                  <div className="card-overlay-v2">
+                    {/* ADDED: "Click for more info" hint */}
+                    <div className="click-info-hint">
+                      <FaInfoCircle />
+                      <span>Click for more information</span>
+                    </div>
+                    <div className="card-content-v2">
+                      <h3 className="card-title-v2">{service.title}</h3>
+                      <p className="card-description-v2">{service.description}</p>
+                      <div className="stats-container-v2">
+                        {service.stats.map((stat, statIndex) => (
+                          <div className="stat-item-v2" key={statIndex}>
+                            <span className="stat-icon-v2">{stat.icon}</span>
+                            <span className="stat-text-v2">{stat.text}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
