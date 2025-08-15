@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import { FaSchool, FaUsers, FaStamp, FaBook, FaFileInvoiceDollar } from 'react-icons/fa';
-import '../csssection/Services.css';
+import '../csssection/services.css';
 
 const servicesData = [
   {
