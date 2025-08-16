@@ -101,11 +101,24 @@
   margin-bottom: 20px;
 }
 
+.input-group label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.required-asterisk {
+  color: #e53e3e;
+  margin-left: 2px;
+}
+
 .input-group svg {
   position: absolute;
   left: 15px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(50%);
   color: #aaa;
 }
 
@@ -262,6 +275,33 @@
   border-color: #ff7f32;
 }
 
+.privacy-policy-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.privacy-policy-group input[type="checkbox"] {
+  margin-top: 4px;
+}
+
+.privacy-policy-group label {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.privacy-policy-group a {
+  color: #ff7f32;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.privacy-policy-group a:hover {
+  text-decoration: underline;
+}
+
 .submit-final-btn {
   background: #ff7f32;
   color: white;
@@ -280,7 +320,7 @@
     grid-template-columns: 1fr;
   }
   .contact-left-panel {
-    display: none; /* Hide decorative panel on mobile for a simpler form */
+    display: none;
   }
 }
 
