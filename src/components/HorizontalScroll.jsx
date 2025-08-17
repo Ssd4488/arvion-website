@@ -114,8 +114,8 @@ const HorizontalScroll = () => {
   return (
     <section className="interactive-services-v2">
       <div className="section-header">
-        <h2 className="section-title-v2">Our Core Services</h2>
-        <p className="section-subtitle-v2">Explore our suite of solutions designed to help your business thrive.</p>
+        <h2 className="section-title-v2"></h2>
+        <p className="section-subtitle-v2"></p>
       </div>
       <div 
         className="carousel-wrapper-v2"

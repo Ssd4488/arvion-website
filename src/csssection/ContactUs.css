@@ -65,14 +65,16 @@
 }
 
 .contact-left-panel h2 {
-  font-size: 32px;
+  font-size: 38px;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
 .contact-left-panel p {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.6;
   opacity: 0.9;
+  font-weight: bold;
 }
 
 /* Right Panel Styling */
@@ -110,7 +112,7 @@
 }
 
 .required-asterisk {
-  color: #e53e3e;
+  color: #e53e3e; /* Red color for the asterisk */
   margin-left: 2px;
 }
 
@@ -118,7 +120,7 @@
   position: absolute;
   left: 15px;
   top: 50%;
-  transform: translateY(50%);
+  transform: translateY(50%); /* Adjust for label */
   color: #aaa;
 }
 
@@ -187,7 +189,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 16px;
+  font-size: 22px;
   cursor: pointer;
 }
 
@@ -203,13 +205,13 @@
 }
 
 .sub-options h4 {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 .coming-soon-flash {
-  font-size: 12px;
+  font-size: 20px;
   font-weight: 700;
   color: #ff7f32;
   background-color: #fff0e6;
@@ -233,7 +235,7 @@
 
 /* Step 3 Styling */
 .step-description {
-  font-size: 15px;
+  font-size: 18px;
   color: #555;
   margin-bottom: 20px;
   line-height: 1.6;
@@ -275,6 +277,7 @@
   border-color: #ff7f32;
 }
 
+/* NEW: Privacy Policy Styling */
 .privacy-policy-group {
   display: flex;
   align-items: flex-start;
@@ -328,4 +331,61 @@
   .timeslot-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* Styles for the contact info block in the left panel */
+.contact-info-block {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.contact-info-block p {
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
+
+.contact-info-item a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.contact-info-item a:hover {
+  opacity: 0.8;
+}
+
+.success-message {
+  background-color: white;
+  padding: 60px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.success-icon {
+  font-size: 60px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.success-message h2 {
+  font-size: 32px;
+  color: #0d1b2a;
+  margin-bottom: 15px;
+}
+
+.success-message p {
+  font-size: 18px;
+  color: #555;
 }

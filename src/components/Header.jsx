@@ -73,7 +73,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink to="/contact" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setIsMenuOpen(false)}>
-                Contact
+                ContactUs
               </NavLink>
             </li>
           </ul>

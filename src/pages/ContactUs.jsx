@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaUser, FaEnvelope, FaBuilding, FaPhone, FaArrowRight, FaArrowLeft, FaBriefcase, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaBuilding, FaArrowRight, FaArrowLeft, FaBriefcase, FaPaperPlane, FaCheckCircle, FaWhatsapp, FaPhone } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import '../csssection/ContactUs.css';
 import { db } from '../firebase';
@@ -34,6 +34,31 @@ const ContactUs = () => {
     setToday(`${year}-${month}-${day}`);
   }, []);
 
+  const validateStep1 = () => {
+    if (!formData.name || !formData.email || !formData.company || !formData.jobTitle) {
+      setError('Please fill in all required fields before proceeding.');
+      return false;
+    }
+    if (!isVerified) {
+      setError('Please verify your email address to continue.');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
+  const handleNext = () => {
+    if (step === 1) {
+      if (validateStep1()) {
+        setStep(2);
+      }
+    } else {
+      setStep((prev) => prev + 1);
+    }
+  };
+  
+  const handlePrev = () => setStep((prev) => prev - 1);
+
   const handleSendOtp = () => {
     if (!formData.email) {
       setError('Please enter your email address first.');
@@ -45,25 +70,15 @@ const ContactUs = () => {
     const newOtp = Math.floor(1000 + Math.random() * 9000).toString();
     setGeneratedOtp(newOtp);
 
-    const templateParams = {
-      to_email: formData.email,
-      otp_code: newOtp,
-    };
-
+    const templateParams = { to_email: formData.email, otp_code: newOtp };
     const SERVICE_ID = 'service_muf8yly';
     const TEMPLATE_ID = 'template_ybf0pf2';
-    const USER_ID = 'UaWGHyhF3HEaur86A'; // This is your Public Key
+    const USER_ID = 'UaWGHyhF3HEaur86A';
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID)
-      .then((response) => {
-        setOtpSent(true);
-      })
-      .catch((err) => {
-        setError('Could not send OTP. Please try again.');
-      })
-      .finally(() => {
-        setIsSending(false);
-      });
+      .then(() => setOtpSent(true))
+      .catch(() => setError('Could not send OTP. Please try again.'))
+      .finally(() => setIsSending(false));
   };
 
   const handleVerifyOtp = () => {
@@ -77,32 +92,32 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.finalPhone || !formData.date || !formData.timeSlot) {
+      setError('Please fill in all required fields for this step.');
+      return;
+    }
     if (!formData.privacyPolicy) {
       setError('You must agree to the privacy policy to submit.');
       return;
     }
+    setError('');
     setIsSubmitting(true);
     try {
-      await addDoc(collection(db, "submissions"), {
-        ...formData,
-        isEmailVerified: true,
-        submittedAt: serverTimestamp()
-      });
+      await addDoc(collection(db, "submissions"), { ...formData, submittedAt: serverTimestamp() });
       setIsSubmitted(true);
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      alert("There was an error submitting your request. Please try again.");
+    } catch (err) {
+      console.error("Error adding document: ", err);
+      alert("There was an error submitting your request.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleNext = () => setStep((prev) => prev + 1);
-  const handlePrev = () => setStep((prev) => prev - 1);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
+
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     setFormData((prev) => {
@@ -152,6 +167,21 @@ const ContactUs = () => {
             </div>
             <h2>{stepContent[step - 1].title}</h2>
             <p>{stepContent[step - 1].description}</p>
+            {/* ADDED: Contact info block */}
+            <div className="contact-info-block">
+              <p>Contact us:</p>
+              <div className="contact-info-item">
+                <FaEnvelope />
+                <a href="mailto:cat@arvion.com">cat@arvion.com</a>
+              </div>
+              <div className="contact-info-item">
+                <FaPhone />
+                <a href="tel:+919740484570">+91 9740484570</a>
+              </div><div className="contact-info-item">
+                <FaWhatsapp />
+                <a href="tel:+919740484570">+91 9740484570</a>
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -169,7 +199,7 @@ const ContactUs = () => {
                 {!otpSent && (<button className="nav-btn verification-btn" onClick={handleSendOtp} disabled={isSending}><FaPaperPlane /> {isSending ? 'Sending...' : 'Send OTP'}</button>)}
                 {otpSent && !isVerified && (<><p className="otp-info-message">An OTP has been sent to your email. Please enter it below.</p><div className="input-group otp-group"><input type="text" placeholder="Enter 4-digit OTP" value={enteredOtp} onChange={(e) => setEnteredOtp(e.target.value)} maxLength="4" /><button className="nav-btn verify-btn" onClick={handleVerifyOtp}>Verify</button></div></>)}
                 {isVerified && (<div className="verification-success"><FaCheckCircle /> Your email has been verified successfully!</div>)}
-                <button className="nav-btn next-btn" onClick={handleNext} disabled={!isVerified}>Next Step <FaArrowRight /></button>
+                <button className="nav-btn next-btn" onClick={handleNext}>Next Step <FaArrowRight /></button>
               </motion.div>
             )}
 

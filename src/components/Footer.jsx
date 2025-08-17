@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import logo from '../assets/logo.png';
-import '../csssection/Footer.css'; // This will use the new CSS file
+import '../csssection/Footer.css';
 
 const Footer = () => {
   const services = [
@@ -19,7 +19,7 @@ const Footer = () => {
         {/* Column 1: Logo + About */}
         <div className="footer-column">
           <img src={logo} alt="Arvion Logo" className="footer-logo" />
-          <p className="footer-about">
+          <p>
             Providing innovative solutions to streamline your business operations
             with cutting-edge technology and expert support.
           </p>
@@ -52,15 +52,21 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Follow Us</h4>
           <div className="social-icons">
-            <a href="#" aria-label="Facebook"><FaFacebook /></a>
+            <a href="#" aria-label="Facebook"><FaFacebookF /></a>
             <a href="#" aria-label="Twitter"><FaTwitter /></a>
-            <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href="#" aria-label="LinkedIn"><FaLinkedinIn /></a>
             <a href="#" aria-label="Instagram"><FaInstagram /></a>
           </div>
         </div>
       </div>
+      {/* MODIFIED: Updated the footer-bottom section */}
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Arvion Technologies. All Rights Reserved.</p>
+        <div className="footer-legal-links">
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <span>|</span>
+          <Link to="/terms-of-service">Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );

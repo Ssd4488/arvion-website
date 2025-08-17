@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import Core Components
 import Header from './components/Header';
+import ScrollToTop from './components/ScrollToTop'; // ADD THIS IMPORT
 import HorizontalScroll from "./components/HorizontalScroll";
 import FeaturesSection from './components/FeaturesSection';
 import Footer from './components/Footer';
 
-// Import All Page Components from the correct 'pages' folder
+// Import All Page Components
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import Services from './pages/Services';
@@ -16,6 +17,8 @@ import OutsourcingPage from './pages/OutsourcingPage';
 import RegistrationsPage from './pages/RegistrationsPage';
 import AccountingPage from './pages/AccountingPage';
 import PayrollPage from './pages/PayrollPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 
 import './App.css';
 
@@ -23,6 +26,7 @@ function App() {
   return (
     <div className="app-container">
       <Header />
+      <ScrollToTop /> 
       <main className="main-content">
         <Routes>
           {/* Homepage Route */}
@@ -47,6 +51,10 @@ function App() {
           <Route path="/services/registrations" element={<RegistrationsPage />} />
           <Route path="/services/accounting" element={<AccountingPage />} />
           <Route path="/services/payroll" element={<PayrollPage />} />
+          
+          {/* Legal Page Routes */}
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
         </Routes>
       </main>
       <Footer />
