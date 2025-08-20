@@ -17,7 +17,7 @@ const featuresData = {
     image: schoolImg,
   },
   outsourcing: {
-    title: 'Outsourcing Solutions',
+    title: 'Payroll Outsourcing',
     description: 'Leverage our global talent pool to scale your operations and achieve your business goals.',
     points: ['Access to vetted professionals', 'Flexible team scaling', 'Managed project delivery', 'Performance analytics'],
     image: outsourcingImg,
@@ -35,7 +35,7 @@ const featuresData = {
     image: accountingImg,
   },
   payroll: {
-    title: 'Payroll Application',
+    title: 'Payroll (Coming Soon!!!)',
     description: 'An efficient and secure application to manage all aspects of your company’s payroll and compliance.',
     points: ['Automated salary calculation', 'Secure data handling', 'Effortless compliance reporting', 'Employee self-service portal'],
     image: payrollImg,
@@ -47,13 +47,23 @@ const serviceOrder = ['school', 'outsourcing', 'registrations', 'accounting', 'p
 const FeaturesSection = () => {
   const [activeService, setActiveService] = useState('school');
 
+  const handleServiceClick = (key) => {
+    setActiveService(key);
+
+    // Scroll into view only for mobile
+    const contentSection = document.getElementById('features-content-column');
+    if (window.innerWidth < 992 && contentSection) {
+      contentSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const currentService = featuresData[activeService];
 
   return (
     <section className="features-section">
       <div className="features-container">
         <h2 className="features-main-title">Features That Power Your Business</h2>
-        
+
         <div className="features-content-wrapper">
           {/* Left Side: Vertical Tabs */}
           <div className="vertical-tabs-column">
@@ -61,7 +71,7 @@ const FeaturesSection = () => {
               <button
                 key={key}
                 className={`vertical-tab-btn ${activeService === key ? 'active' : ''}`}
-                onClick={() => setActiveService(key)}
+                onClick={() => handleServiceClick(key)} // ✅ fixed here
               >
                 {featuresData[key].title}
               </button>
@@ -69,14 +79,14 @@ const FeaturesSection = () => {
           </div>
 
           {/* Right Side: Content Display */}
-          <div className="features-content-column">
+          <div id="features-content-column" className="features-content-column">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeService}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
                 className="service-content-display"
               >
                 <div className="service-content-text">

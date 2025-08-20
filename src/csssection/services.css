@@ -12,7 +12,7 @@
 .services-grid-section {
   padding: 120px 0 80px;
   text-align: center;
-  background-color: #f8f9fa; /* Light grey background for the top section */
+  background-color: #f8f9fa;
 }
 
 .services-main-title {
@@ -22,7 +22,7 @@
 }
 
 .services-main-subtitle {
-  font-size: 18px;
+  font-size: 22px;
   color: #555;
   max-width: 600px;
   margin: 10px auto 50px;
@@ -57,14 +57,14 @@
 }
 
 .summary-title {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 600;
   color: #0d1b2a;
   margin-bottom: 15px;
 }
 
 .summary-text {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.6;
   color: #555;
   flex-grow: 1;
@@ -81,111 +81,74 @@
   cursor: pointer;
   transition: background 0.3s ease;
   align-self: flex-start;
+  font-size: 22px;
 }
 
 .summary-btn:hover {
   background: #e96e25;
 }
 
-/* Detail Section Styling - NEW Overlapping Layout */
+/* Detail Section Styling (No longer used on this page, but kept for consistency) */
 .service-detail-section {
   padding: 80px 0;
-  background-color: #fff;
 }
 
 .detail-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0; /* No gap as we are overlapping */
+  gap: 60px;
   align-items: center;
-  position: relative;
 }
 
-.detail-image {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  z-index: 1;
-}
-
-.detail-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-.detail-text-card {
-  grid-column: 1 / 3;
-  grid-row: 1 / 2;
-  background-color: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-  z-index: 2;
-  width: 60%; /* Card takes up 60% of the container width */
-  justify-self: end; /* Aligns the card to the right */
-}
-
-/* Reverse layout for every other section */
-.service-detail-section:nth-child(even) .detail-image {
-  grid-column: 2 / 3;
-}
-
-.service-detail-section:nth-child(even) .detail-text-card {
-  justify-self: start; /* Aligns the card to the left */
-}
-
-.detail-text-card h2 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #0d1b2a;
-  margin-bottom: 20px;
-}
-
-.detail-text-card p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #555;
-  margin-bottom: 25px;
-}
-
-.detail-text-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.detail-text-card ul li {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 12px;
-  position: relative;
-  padding-left: 25px;
-}
-
-.detail-text-card ul li::before {
-  content: '✓';
-  color: #ff7f32;
-  position: absolute;
-  left: 0;
-  font-weight: 700;
-}
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .detail-container {
-    grid-template-columns: 1fr;
+/* --- MOBILE RESPONSIVE STYLES for Services Page --- */
+@media (max-width: 768px) {
+  .services-grid-section {
+    padding: 100px 20px 60px;
   }
-  .detail-image {
-    grid-column: 1 / 2;
-    margin-bottom: -100px; /* Pull the text card up */
+
+  .services-main-title {
+    font-size: 32px;
   }
-  .detail-text-card {
-    width: 90%;
-    justify-self: center; /* Center the card */
+
+  .services-grid {
+    grid-template-columns: 1fr; /* Change to a single column layout */
+    gap: 20px;
   }
-  .service-detail-section:nth-child(even) .detail-image {
-    grid-column: 1 / 2;
+
+  /* MODIFIED: Changed the card to the "Featured List" style */
+  .service-card-summary {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Icon on left, content on right */
+    grid-template-rows: auto auto auto; /* Added a row for the button */
+    gap: 0 20px; /* No row gap, 20px column gap */
+    align-items: center;
+    padding: 25px;
   }
-  .service-detail-section:nth-child(even) .detail-text-card {
-    justify-self: center;
+
+  .summary-icon {
+    grid-row: 1 / 4; /* Icon spans all three rows */
+    margin-bottom: 0;
+    font-size: 36px;
+  }
+
+  .summary-title {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin-bottom: 5px;
+  }
+
+  .summary-text {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    flex-grow: 0; /* Unset flex-grow */
+  }
+
+  .summary-btn {
+    /* MODIFIED: Made the button visible and styled it for mobile */
+    display: block; 
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    margin-top: 15px;
+    width: auto; /* Allow button to size to its content */
   }
 }

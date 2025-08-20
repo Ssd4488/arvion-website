@@ -31,7 +31,7 @@ const TermsOfServicePage = () => {
          2ND MAIN, GANGANAGAR, BANGALORE -560032.<br />
          <a
          href="mailto:cat@arvion.com">cat@arvion.com</a>(Client Advocacy Team)<br />
-          9740484570
+          9535764655
         </p>
       </div>
     </div>

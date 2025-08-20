@@ -7,7 +7,7 @@ import '../csssection/Footer.css';
 const Footer = () => {
   const services = [
     { name: 'School Management', path: '/services/school-management' },
-    { name: 'Outsourcing', path: '/services/outsourcing' },
+    { name: 'Payroll Outsourcing', path: '/services/outsourcing' },
     { name: 'Statutory Registrations', path: '/services/registrations' },
     { name: 'Accounting', path: '/services/accounting' },
     { name: 'Payroll', path: '/services/payroll' },

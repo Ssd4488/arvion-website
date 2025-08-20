@@ -16,8 +16,8 @@ const servicesData = [
   {
     id: 'outsourcing',
     icon: <FaUsers />,
-    title: 'Outsourcing',
-    summary: 'Access a global talent pool to scale your team and drive business growth efficiently.',
+    title: 'Payroll Outsourcing',
+    summary: 'Our comprehensive Payroll Outsourcing service is designed to lift that entire burden from your shoulders.',
     path: '/services/outsourcing',
   },
   {
@@ -37,7 +37,7 @@ const servicesData = [
   {
     id: 'payroll',
     icon: <FaFileInvoiceDollar />,
-    title: 'Payroll',
+    title: 'Payroll  (coming sonn!!!)',
     summary: 'An efficient and secure application to manage all aspects of your company’s payroll and compliance.',
     path: '/services/payroll',
   },
@@ -48,8 +48,8 @@ const Services = () => {
     <div className="services-page">
       <section className="services-grid-section">
         <div className="services-container">
-          <h1 className="services-main-title">Our Comprehensive Solutions</h1>
-          <p className="services-main-subtitle">We provide a full suite of services to streamline your operations and drive success. Click on any service to learn more.</p>
+          <h1 className="services-main-title"></h1>
+          <p className="services-main-subtitle"></p>
           <div className="services-grid">
             {/* CORRECTED: Using the correct variable name 'servicesData' here */}
             {servicesData.map((service, index) => (

@@ -26,7 +26,7 @@ const OutsourcingPage = () => {
     <div className="service-page">
       <section className="service-hero" style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="hero-overlay">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>Outsourcing Solutions</motion.h1>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>Payroll Outsourcing</motion.h1>
           <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>Your strategic partner for global talent and operational excellence.</motion.p>
         </div>
       </section>
@@ -61,7 +61,7 @@ const OutsourcingPage = () => {
         <div className="service-container benefits-container">
           <motion.div className="benefits-text" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
             <h2>Unlock Key Benefits</h2>
-            <p>Partnering with us for your outsourcing needs provides tangible benefits that drive efficiency, reduce costs, and accelerate growth.</p>
+            <p>Partnering with us for your Payroll outsourcing needs provides tangible benefits that drive efficiency, reduce costs, and accelerate growth.</p>
             <ul>{benefits.map((benefit, index) => (<li key={index}>{benefit}</li>))}</ul>
           </motion.div>
           <motion.div className="benefits-image" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
@@ -73,7 +73,7 @@ const OutsourcingPage = () => {
       <section className="service-cta">
         <div className="service-container cta-container">
           <h2>Ready to Build Your Global Team?</h2>
-          <p>Let's discuss how our outsourcing solutions can help you achieve your business goals.</p>
+          <p>Let's discuss how our Payroll outsourcing solutions can help you achieve your business goals.</p>
           <Link to="/contact" className="cta-button">Get Started <FaArrowRight /></Link>
         </div>
       </section>

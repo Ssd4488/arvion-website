@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaUser, FaEnvelope, FaBuilding, FaArrowRight, FaArrowLeft, FaBriefcase, FaPaperPlane, FaCheckCircle, FaWhatsapp, FaPhone } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaBuilding, FaPhone, FaArrowRight, FaArrowLeft, FaBriefcase, FaPaperPlane, FaCheckCircle, FaWhatsapp } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import '../csssection/ContactUs.css';
 import { db } from '../firebase';
@@ -71,9 +71,9 @@ const ContactUs = () => {
     setGeneratedOtp(newOtp);
 
     const templateParams = { to_email: formData.email, otp_code: newOtp };
-    const SERVICE_ID = 'service_muf8yly';
-    const TEMPLATE_ID = 'template_ybf0pf2';
-    const USER_ID = 'UaWGHyhF3HEaur86A';
+    const SERVICE_ID = 'YOUR_SERVICE_ID';
+    const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    const USER_ID = 'YOUR_USER_ID';
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID)
       .then(() => setOtpSent(true))
@@ -167,9 +167,8 @@ const ContactUs = () => {
             </div>
             <h2>{stepContent[step - 1].title}</h2>
             <p>{stepContent[step - 1].description}</p>
-            {/* ADDED: Contact info block */}
             <div className="contact-info-block">
-              <p>Contact us:</p>
+              <p>Or contact us directly:</p>
               <div className="contact-info-item">
                 <FaEnvelope />
                 <a href="mailto:cat@arvion.com">cat@arvion.com</a>
@@ -177,15 +176,25 @@ const ContactUs = () => {
               <div className="contact-info-item">
                 <FaPhone />
                 <a href="tel:+919740484570">+91 9740484570</a>
-              </div><div className="contact-info-item">
-                <FaWhatsapp />
-                <a href="tel:+919740484570">+91 9740484570</a>
               </div>
             </div>
           </motion.div>
         </div>
 
         <div className="contact-right-panel">
+          {/* This is the new mobile header */}
+          <div className="mobile-form-header">
+            <div className="progress-bar">
+              {[1, 2, 3].map((num) => (
+                <React.Fragment key={num}>
+                  <div className={`progress-step ${step >= num ? 'active' : ''}`}>{num}</div>
+                  {num < 3 && <div className={`progress-line ${step > num ? 'active' : ''}`}></div>}
+                </React.Fragment>
+              ))}
+            </div>
+            <h2>{stepContent[step - 1].title}</h2>
+          </div>
+
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div key="step1" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="form-step">
@@ -235,6 +244,23 @@ const ContactUs = () => {
                </motion.div>
             )}
           </AnimatePresence>
+
+          {/* This is the new mobile footer */}
+          <div className="mobile-form-footer">
+            <p>Or contact us directly:</p>
+            <div className="contact-info-item">
+              <FaEnvelope />
+              <a href="mailto:cat@arvion.com">cat@arvion.com</a>
+            </div>
+            <div className="contact-info-item">
+              <FaPhone />
+              <a href="tel:+919535764655">+91 9535764655</a>
+            </div>
+            <div className="contact-info-item">
+              <FaWhatsapp />
+              <a href="https://wa.me/919535764655" target="_blank" rel="noopener noreferrer">+91 9535764655</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

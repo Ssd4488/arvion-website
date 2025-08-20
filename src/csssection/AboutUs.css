@@ -18,21 +18,21 @@
 }
 
 .about-title {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 700;
   color: #0d1b2a;
   margin-bottom: 10px;
 }
 
 .about-subtitle {
-  font-size: 27px;
+  font-size: 25px;
   color: #ff7f32; /* Using your brand accent color */
   margin-bottom: 30px;
   font-weight: 500;
 }
 
 .about-description {
-  font-size: 25px;
+  font-size: 23px;
   line-height: 1.7;
   color: #555;
   margin-bottom: 20px;
@@ -49,14 +49,14 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive adjustments */
+/* --- MOBILE RESPONSIVE STYLES --- */
 @media (max-width: 992px) {
   .about-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack the columns */
     gap: 40px;
   }
   .about-content {
-    text-align: center;
+    text-align: center; /* Center text on mobile */
   }
   .about-image-wrapper {
     order: -1; /* Move image to the top on mobile */
@@ -68,6 +68,6 @@
     padding: 100px 20px 60px;
   }
   .about-title {
-    font-size: 32px;
+    font-size: 38px;
   }
 }

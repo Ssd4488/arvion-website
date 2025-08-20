@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import Core Components
 import Header from './components/Header';
-import ScrollToTop from './components/ScrollToTop'; // ADD THIS IMPORT
 import HorizontalScroll from "./components/HorizontalScroll";
 import FeaturesSection from './components/FeaturesSection';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
-// Import All Page Components
+// Import All Page Components from the correct 'pages' folder
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import Services from './pages/Services';
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <ScrollToTop /> 
+      <ScrollToTop />
       <main className="main-content">
         <Routes>
           {/* Homepage Route */}

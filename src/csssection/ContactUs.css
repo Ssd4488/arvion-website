@@ -5,7 +5,7 @@
   min-height: 100vh;
   background-color: #f0f2f5;
   padding: 40px;
-  padding-top: 120px; /* Account for fixed header */
+  padding-top: 120px;
   box-sizing: border-box;
 }
 
@@ -65,16 +65,14 @@
 }
 
 .contact-left-panel h2 {
-  font-size: 38px;
+  font-size: 32px;
   margin-bottom: 15px;
-  font-weight: bold;
 }
 
 .contact-left-panel p {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.6;
   opacity: 0.9;
-  font-weight: bold;
 }
 
 /* Right Panel Styling */
@@ -112,7 +110,7 @@
 }
 
 .required-asterisk {
-  color: #e53e3e; /* Red color for the asterisk */
+  color: #e53e3e;
   margin-left: 2px;
 }
 
@@ -120,7 +118,7 @@
   position: absolute;
   left: 15px;
   top: 50%;
-  transform: translateY(50%); /* Adjust for label */
+  transform: translateY(50%);
   color: #aaa;
 }
 
@@ -184,34 +182,29 @@
   flex-direction: column;
   gap: 15px;
 }
-
 .checkbox-group label {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 22px;
+  font-size: 16px;
   cursor: pointer;
 }
-
 .checkbox-group label.disabled {
   color: #aaa;
   cursor: not-allowed;
 }
-
 .sub-options {
   padding-left: 25px;
   margin-top: 10px;
   border-left: 2px solid #ffede0;
 }
-
 .sub-options h4 {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
   margin-bottom: 10px;
 }
-
 .coming-soon-flash {
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 700;
   color: #ff7f32;
   background-color: #fff0e6;
@@ -219,12 +212,10 @@
   border-radius: 9999px;
   animation: flash 2s infinite;
 }
-
 @keyframes flash {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
-
 .select-input {
   width: 100%;
   padding: 12px;
@@ -235,12 +226,11 @@
 
 /* Step 3 Styling */
 .step-description {
-  font-size: 18px;
+  font-size: 15px;
   color: #555;
   margin-bottom: 20px;
   line-height: 1.6;
 }
-
 .date-input {
   width: 100%;
   padding: 12px;
@@ -249,13 +239,11 @@
   font-size: 16px;
   margin-bottom: 20px;
 }
-
 .timeslot-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
-
 .timeslot-btn {
   padding: 10px;
   border: 1px solid #ddd;
@@ -265,46 +253,37 @@
   transition: all 0.3s ease;
   font-weight: 500;
 }
-
 .timeslot-btn:hover {
   border-color: #ff7f32;
   color: #ff7f32;
 }
-
 .timeslot-btn.active {
   background-color: #ff7f32;
   color: white;
   border-color: #ff7f32;
 }
-
-/* NEW: Privacy Policy Styling */
 .privacy-policy-group {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   margin-top: 25px;
 }
-
 .privacy-policy-group input[type="checkbox"] {
   margin-top: 4px;
 }
-
 .privacy-policy-group label {
   font-size: 14px;
   color: #555;
   line-height: 1.5;
 }
-
 .privacy-policy-group a {
   color: #ff7f32;
   font-weight: 600;
   text-decoration: none;
 }
-
 .privacy-policy-group a:hover {
   text-decoration: underline;
 }
-
 .submit-final-btn {
   background: #ff7f32;
   color: white;
@@ -317,50 +296,28 @@
   transition: all 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .contact-container-v2 {
-    grid-template-columns: 1fr;
-  }
-  .contact-left-panel {
-    display: none;
-  }
-}
-
-@media (max-width: 576px) {
-  .timeslot-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* Styles for the contact info block in the left panel */
 .contact-info-block {
   margin-top: 40px;
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
-
 .contact-info-block p {
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 20px;
-  font-size: 22px;
 }
-
 .contact-info-item {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 20px;
-  font-weight: bolder;
+  margin-bottom: 15px;
 }
-
 .contact-info-item a {
   color: white;
   text-decoration: none;
   font-weight: 500;
   transition: opacity 0.3s ease;
 }
-
 .contact-info-item a:hover {
   opacity: 0.8;
 }
@@ -372,20 +329,93 @@
   text-align: center;
   box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 }
-
 .success-icon {
   font-size: 60px;
   color: #28a745;
   margin-bottom: 20px;
 }
-
 .success-message h2 {
   font-size: 32px;
   color: #0d1b2a;
   margin-bottom: 15px;
 }
-
 .success-message p {
   font-size: 18px;
   color: #555;
+}
+
+/* Mobile Header and Footer for the form */
+.mobile-form-header, .mobile-form-footer {
+  display: none; /* Hidden by default on desktop */
+}
+
+/* --- MOBILE RESPONSIVE STYLES (CORRECTED) --- */
+@media (max-width: 992px) {
+  .contact-container-v2 {
+    grid-template-columns: 1fr;
+  }
+  .contact-left-panel {
+    display: none;
+  }
+  .contact-right-panel {
+    padding: 0; /* Remove padding to make room for header/footer */
+  }
+  .form-step {
+    padding: 40px 20px;
+  }
+  .mobile-form-header {
+    display: block;
+    padding: 30px 20px;
+    background-color: #ff7f32;
+    border-bottom: 1px solid #e9ecef;
+  }
+  .mobile-form-header .progress-bar .progress-step {
+    background-color: #e9ecef;
+    color: #555;
+  }
+  .mobile-form-header .progress-bar .progress-step.active {
+    background-color: #ff7f32;
+    color: white;
+  }
+  .mobile-form-header .progress-bar .progress-line {
+    background-color: #e9ecef;
+  }
+  .mobile-form-header .progress-bar .progress-line.active {
+    background-color: #ff7f32;
+  }
+  .mobile-form-header h2 {
+    font-size: 24px;
+    color: #0d1b2a;
+    margin: 0;
+  }
+  .mobile-form-footer {
+    display: block;
+    padding: 30px 20px;
+    background-color: #ff7f32;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+  }
+  .mobile-form-footer p {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  .mobile-form-footer .contact-info-item {
+    justify-content: center;
+    color: #555;
+  }
+  .mobile-form-footer .contact-info-item a {
+    color: #f7f5f4;
+    font-weight: 600;
+  }
+  .mobile-form-footer .contact-info-item b {
+    color: #f7f5f4;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 576px) {
+  .timeslot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

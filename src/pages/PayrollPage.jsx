@@ -1,83 +1,79 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
-import '../csssection/ServicePage.css';
-
-// MODIFIED: Updated image imports to match your new filenames
+import '../csssection/ServicePage.css'; // Added this import
+import ComingSoonModal from '../components/ComingSoonModal';
 import heroImg from '../assets/service-payroll.png';
-import featureCalcImg from '../assets/Payroll Page- image-1.png';
-import featureSecurityImg from '../assets/Payroll Page- image-2.png';
-import featureComplianceImg from '../assets/Payroll Page- image-3.png';
-import featureEssImg from '../assets/Payroll Page- image-4.png';
-import benefitSummaryImg from '../assets/Payroll Page-benefits-image.png';
 
 const PayrollPage = () => {
-  const detailedFeatures = [
-    { title: 'Automated Salary Calculation', description: 'Eliminate manual errors with our precise, automated system that handles complex salary structures, overtime, bonuses, and deductions for every pay cycle. Our platform ensures every employee is paid accurately and on time, every time.', image: featureCalcImg },
-    { title: 'Secure Data Handling & Confidentiality', description: 'Protect your most sensitive employee information with end-to-end encryption and secure, cloud-based servers. We prioritize data security to ensure confidentiality and build trust within your organization.', image: featureSecurityImg },
-    { title: 'Effortless Tax & Compliance Management', description: 'Stay up-to-date with the latest tax regulations and statutory requirements. Our application automatically generates compliance reports, tax filings, and other necessary documents, making audits and legal adherence stress-free.', image: featureComplianceImg },
-    { title: 'Employee Self-Service Portal', description: 'Empower your team with a secure, user-friendly portal to access their payslips, tax statements, and manage personal information. This reduces the administrative burden on your HR department and improves employee satisfaction.', image: featureEssImg },
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
-  const benefits = [ 'Save Time and Reduce Administrative Burden', 'Ensure Accuracy and Avoid Costly Errors', 'Guarantee Data Security and Confidentiality', 'Stay Compliant with Changing Regulations', 'Improve Employee Satisfaction and Trust', 'Access Real-time Payroll Analytics' ];
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isModalOpen]);
 
   return (
-    <div className="service-page">
-      <section className="service-hero" style={{ backgroundImage: `url(${heroImg})` }}>
-        <div className="hero-overlay">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>Payroll Application</motion.h1>
-          <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>Accurate, compliant, and effortless payroll management.</motion.p>
-        </div>
-      </section>
+    <>
+      <ComingSoonModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <div className="service-page">
+        <section className="service-hero" style={{ backgroundImage: `url(${heroImg})` }}>
+          <div className="hero-overlay">
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+              Payroll (Coming Soon!!!)
+            </motion.h1>
+            <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+              Get ready for the future of effortless payroll management.
+            </motion.p>
+          </div>
+        </section>
 
-      <section className="service-intro">
-        <div className="service-container">
-          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
-            <h2>Simplify Your Payroll, Empower Your Business</h2>
-            <p>Our advanced payroll application automates and simplifies your entire payroll process. From calculating salaries to ensuring tax compliance, our secure platform handles it all with precision, freeing up your HR team to focus on more strategic initiatives.</p>
-          </motion.div>
-        </div>
-      </section>
-      
-      <section className="detailed-features-section">
-        <div className="service-container">
-          <h2 className="section-title">A Closer Look at Our Features</h2>
-          {detailedFeatures.map((feature, index) => (
-            <div className="detailed-feature-row" key={index}>
-              <motion.div className="detailed-feature-text" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8 }}>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-              </motion.div>
-              <motion.div className="detailed-feature-image" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8 }}>
-                <img src={feature.image} alt={feature.title} />
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </section>
+        <section className="service-intro">
+          <div className="service-container">
+            <motion.div style={{ fontsize: "28px", fontWeight: "700"}} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
+              <h2>A Sneak Peek at What's Coming</h2>
+              <p style={{ fontsize: "22px", }}> We are working hard to bring you a state-of-the-art payroll application that will automate and simplify your entire payroll process. From accurate salary calculations to seamless compliance, our new platform is designed to save you time and empower your business. Stay tuned for the official launch!</p>
+            </motion.div>
+          </div>
+        </section>
 
-      <section className="service-benefits-section">
-        <div className="service-container benefits-container">
-          <motion.div className="benefits-text" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
-            <h2>Unlock Key Benefits</h2>
-            <p>Our payroll solution delivers tangible benefits that save time, reduce risk, and improve the employee experience across your organization.</p>
-            <ul>{benefits.map((benefit, index) => (<li key={index}>{benefit}</li>))}</ul>
-          </motion.div>
-          <motion.div className="benefits-image" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
-            <img src={benefitSummaryImg} alt="Payroll Benefits" />
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="service-cta">
-        <div className="service-container cta-container">
-          <h2>Ready for Stress-Free Payroll?</h2>
-          <p>Let's discuss how our application can transform your payroll process.</p>
-          <Link to="/contact" className="cta-button">Request a Demo <FaArrowRight /></Link>
-        </div>
-      </section>
-    </div>
+        <section className="service-cta">
+          <div className="service-container cta-container">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Want to be the first to know?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Join our waitlist, and we'll notify you as soon as Payroll (Paybooks) is live.
+            </motion.p>
+            <motion.button 
+              className="cta-button" 
+              onClick={() => setIsModalOpen(true)}
+              whileHover={{ scale: 1.05, boxShadow: '0px 10px 30px rgba(255, 127, 50, 0.4)' }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Notify Me <FaArrowRight />
+            </motion.button>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 
